@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        span {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        #resultado2 {
+            margin-bottom: 20px;
+        }
+
+        #resultado6 {
+            margin-bottom: 20px;
+        }
+
+        #valorfinal {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h3>Exercício 1</h3>
+    <span>Crie duas variáveis com o valor 10 e 100. Mostre o valor da soma, subtração, divisão e multiplicação em um
+        ALERT.</span>
+    <br><br>
+    <button id="soma">Soma</button>
+    <button id="sub">Subtração</button>
+    <button id="divis">Divisão</button>
+    <button id="mult">Multiplicação</button>
+
+    <h3>Exercício 2</h3>
+    <span>Loop de 10 a 100</span><br><br>
+    <button id="resultado2">Exibir</button>
+
+    <h3>Exercício 3 e 4</h3>
+    <input type="number" placeholder="Tabuada de:" id="num3" />
+    <button id="tabuada">Exibir</button>
+
+    <h3>Exercício 5</h3>
+    <input type="" placeholder="Tipo da Operação" id="op4" /> <!--kkk deu branco no Type-->
+    <input type="number" id="n14" />
+    <input type="number" id="n24" />
+    <button id="calcular4">Calcular</button>
+
+    <h3>Exercício 6</h3>
+    <button id="pares">Exibir Pares</button>
+    <div id="resultado6"></div>
+
+    <h3>Exercício 7</h3>
+    <input type="number" placeholder="Custo de Fabrica" id="custoFabrica" />
+    <input type="number" placeholder="Perc. Distribuidor" id="percDistribuidor" />
+    <input type="number" placeholder="Perc. Impostos" id="percImpostos" />
+    <button id="btncalcular">Calcular</button>
+    <div id="valorfinal"></div>
+    <br><br>
+
+    <script>
+        let a = 10;
+        let b = 100;
+
+        // Ex 1
+        document.querySelector("#soma").addEventListener("click", () => {
+            alert("Soma: " + (a + b));
+        });
+        document.querySelector("#sub").addEventListener("click", () => {
+            alert("Subtração: " + (a - b));
+        });
+        document.querySelector("#divis").addEventListener("click", () => {
+            alert("Divisão: " + a / b);
+        });
+        document.querySelector("#mult").addEventListener("click", () => {
+            alert("Multiplicação: " + a * b);
+        });
+
+        // Ex 2
+        const array2 = [];
+        for (let i = 10; i <= 100; i++) {
+            array2.push(i);
+        }
+        // demostrando
+        document.querySelector("#resultado2").addEventListener("click", () => {
+            document.querySelector("#resultado2").innerHTML = array2.join(" ");
+        });
+
+        // Ex 3 e 4
+        document.querySelector("#tabuada").addEventListener("click", () => {
+
+            //aqui era só deixar fixo
+            //let n3 = 5;
+
+            let n3 = parseInt(document.querySelector("#num3").value);
+            let result3 = "";
+            for (let i = 1; i <= 10; i++) {
+                result3 += n3 + " x " + i + " = " + n3 * i + " | ";
+            }
+            document.querySelector("#tabuada").innerHTML = result3;
+        });
+
+        // Ex 5
+        document.querySelector("#calcular4").addEventListener("click", () => {
+            let op4 = document.querySelector("#op4").value;
+            let n14 = parseFloat(document.querySelector("#n14").value);
+            let n24 = parseFloat(document.querySelector("#n24").value);
+
+            let resultado4;
+
+            switch (op4) {
+                case "+":
+                    resultado4 = n14 + n24;
+                    break;
+                case "-":
+                    resultado4 = n14 - n24;
+                    break;
+                case "*":
+                    resultado4 = n14 * n24;
+                    break;
+                case "/":
+                    resultado4 = n14 / n24;
+                    break;
+                default:
+                    resultado4 = "Operação inválida!";
+            }
+
+            document.querySelector("#calcular4").innerHTML =
+                "Resultado: " + resultado4;
+        });
+
+        // Ex 6
+        const array6 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        document.querySelector("#pares").addEventListener("click", () => {
+            let pares = array6.filter((num) => num % 2 === 0);
+            document.querySelector("#resultado6").innerHTML = pares.join(" ");
+        });
+
+        // Ex 7
+        document.querySelector("#btncalcular").addEventListener("click", () => {
+            let custoFabrica = parseFloat(
+                document.querySelector("#custoFabrica").value
+            );
+            let percDistribuidor = parseFloat(
+                document.querySelector("#percDistribuidor").value
+            );
+            let percImpostos = parseFloat(
+                document.querySelector("#percImpostos").value
+            );
+
+            //tentei deixa uma forma que de pra enteder
+            let custoFinal =
+                custoFabrica +
+                custoFabrica * (percDistribuidor / 100) +
+                custoFabrica * (percImpostos / 100);
+
+            document.querySelector("#valorfinal").innerHTML = custoFinal;
+        });
+    </script>
+</body>
+
+</html>
